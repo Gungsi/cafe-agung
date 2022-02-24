@@ -12,6 +12,12 @@ class Jenis_Model extends CI_Model {
     return $query->result();
   }
 
+  function get_jenis_by_status($status){
+    $sql = "select * from t_jenis where status = ? order by id asc";
+    $query = $this->db->query($sql, [$status]);
+    return $query->result();
+  }
+
   function get_jenis_by_id($id){
     $sql = "select * from t_jenis where id = ?";
     $query = $this->db->query($sql, array($id));

@@ -1,20 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Jenis extends CI_Controller {
+class Diskon extends CI_Controller {
 
   public function __construct(){
     parent::__construct();
     
-    $this->load->model('Jenis_Model');
+    $this->load->model('Diskon_Model');
     $this->general->session_check();
   }
 
   public function index(){
     if( $this->session->userdata('login')){
       $data = [];
-      $data['title'] = "Jenis";
-      $data['data_jenis'] = $this->Jenis_Model->get_jenis();
+      $data['title'] = "Diskon";
+      $data['data_diskon'] = $this->Diskon_Model->get_diskon();
 
       if($this->session->userdata('level')==1){
         $level = "Admin";
@@ -25,7 +25,7 @@ class Jenis extends CI_Controller {
       }
       $data['level'] = $level;
       
-      $this->template->backend("jenis/index", $data);
+      $this->template->backend("diskon/index", $data);
     } else {
       redirect("login");
     }
@@ -36,7 +36,7 @@ class Jenis extends CI_Controller {
     if( $this->session->userdata('login')){
       $pesan = "";
       $data = [];
-      $data['title'] = "Form Tambah Jenis";
+      $data['title'] = "Form Tambah Diskon";
 
       if($this->session->userdata('level')==1){
         $level = "Admin";
@@ -47,23 +47,25 @@ class Jenis extends CI_Controller {
       }
       $data['level'] = $level;
 
+      $data['data_jenis'] = $this->Jenis_Model->get_jenis_by_status(1);
+
       if($this->input->post("submit")){
       
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('jenis', 'Jenis', 'trim|xss_clean|strip_tags|required');
+        $this->form_validation->set_rules('diskon', 'diskon', 'trim|xss_clean|strip_tags|required');
     
         if($this->form_validation->run()){
-          $jenis = $this->security->sanitize_filename($this->input->post('jenis'));
+          $diskon = $this->security->sanitize_filename($this->input->post('diskon'));
           $status = $this->input->post('status');
-          $this->Jenis_Model->jenis_insert($jenis, $status);
-          redirect("jenis");
+          $this->Diskon_Model->diskon_insert($diskon, $status);
+          redirect("diskon");
         }else{
           $pesan = "Mohon isi semua dengan benar";
         }
       }
 
       $data["pesan"] = $pesan;
-      $this->template->backend("jenis/add_jenis", $data);
+      $this->template->backend("diskon/add_diskon", $data);
     } else {
       redirect("login");
     }
@@ -75,8 +77,8 @@ class Jenis extends CI_Controller {
       $pesan = "";
       $data = [];
       $data['id'] = $id;
-      $data['title'] = "Form Ubah Jenis";
-      $data['data_jenis'] = $this->Jenis_Model->get_jenis_by_id($id);
+      $data['title'] = "Form Ubah Diskon";
+      $data['data_diskon'] = $this->Diskon_Model->get_diskon_by_id($id);
 
       if($this->session->userdata('level')==1){
         $level = "Admin";
@@ -87,22 +89,24 @@ class Jenis extends CI_Controller {
       }
       $data['level'] = $level;
 
+      $data['data_jenis'] = $this->Jenis_Model->get_jenis_by_status(1);
+
       if($this->input->post("submit")){      
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('jenis', 'Jenis', 'trim|xss_clean|strip_tags|required');
+        $this->form_validation->set_rules('diskon', 'diskon', 'trim|xss_clean|strip_tags|required');
     
         if($this->form_validation->run()){
-          $jenis = $this->security->sanitize_filename($this->input->post('jenis'));
+          $diskon = $this->security->sanitize_filename($this->input->post('diskon'));
           $status = $this->input->post('status');
-          $this->Jenis_Model->jenis_update($id, $jenis, $status);
-          redirect("jenis");
+          $this->Diskon_Model->diskon_update($id, $diskon, $status);
+          redirect("diskon");
         }else{
           $pesan = "Mohon isi semua dengan benar";
         }
       }
 
       $data["pesan"] = $pesan;
-      $this->template->backend("jenis/edit_jenis", $data);
+      $this->template->backend("diskon/edit_diskon", $data);
     } else {
       redirect("login");
     }
@@ -111,8 +115,8 @@ class Jenis extends CI_Controller {
   public function hapus($id)
   {
     if( $this->session->userdata('login')){
-        $this->Jenis_Model->jenis_delete($id);
-        redirect("jenis");
+        $this->Diskon_Model->diskon_delete($id);
+        redirect("diskon");
     } else {
       redirect("login");
     }

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="<?= base_url("assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css") ?>">
     <link rel="stylesheet" href="<?= base_url("assets/vendors/css/vendor.bundle.base.css") ?>">
     <link rel="stylesheet" href="<?= base_url("assets/vendors/css/vendor.bundle.addons.css") ?>">
+    <link rel="stylesheet" href="<?= base_url("assets/vendors/DataTables/datatables.min.css")?>"/>
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -65,6 +66,7 @@
     <!-- plugins:js -->
     <script src="<?= base_url("assets/vendors/js/vendor.bundle.base.js") ?>"></script>
     <script src="<?= base_url("assets/vendors/js/vendor.bundle.addons.js") ?>"></script>
+    <script src="<?= base_url("assets/vendors/DataTables/datatables.min.js") ?>"></script>
     <!-- endinject -->
     <!-- Plugin js for this page-->
     <!-- End plugin js for this page-->
@@ -73,8 +75,6 @@
     <!-- <script src="<?= base_url("assets/js/shared/misc.js") ?>"></script> -->
     <!-- endinject -->
     <!-- Custom js for this page-->
-    <script src="<?= base_url("assets/js/demo_1/dashboard.js") ?>"></script>
-    <!-- End custom js for this page-->
-    <!-- <script src="<? base_url("assets/js/shared/jquery.cookie.js") ?>" type="text/javascript"></script> -->
+    <script src="<?= base_url("assets/js/custom.js") ?>"></script>
   </body>
 </html>

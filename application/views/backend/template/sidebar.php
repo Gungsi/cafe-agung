@@ -6,8 +6,9 @@
                   <div class="dot-indicator bg-success"></div>
                 </div>
                 <div class="text-wrapper">
-                  <p class="profile-name">Allen Moreno</p>
-                  <p class="designation">Premium user</p>
+                  <p class="profile-name"><?= $this->session->userdata('nama') ?></p>
+                  <p class="designation"><?= $level ?></p>
+                  <!-- <p class="designation"><?= $this->session->userdata('level')==1? "Admin" : $this->session->userdata('level')==2? "Kasir" : "Menejer" ?></p> -->
                 </div>
               </a>
             </li>
@@ -34,6 +35,9 @@
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="<?= base_url("diskon") ?>">Diskon</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url("user") ?>">User</a>
                   </li>
                 </ul>
               </div>
