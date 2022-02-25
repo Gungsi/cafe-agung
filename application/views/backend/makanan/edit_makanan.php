@@ -1,5 +1,5 @@
 <div class="card card-docs">
-    <form action="<?= base_url("makanan/ubah/"+$id) ?>" method="post">
+    <form action="<?= base_url("makanan/ubah/".$id) ?>" method="post">
         <div class="card-body">
             <div class="form-group">
                 <label for="jenis">Jenis</label>

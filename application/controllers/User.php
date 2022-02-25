@@ -15,14 +15,6 @@ class User extends CI_Controller {
       $data = [];
       $data['title'] = "User";
       $data['data_user'] = $this->User_Model->get_user();
-      if($this->session->userdata('level')==1){
-        $level = "Admin";
-      } else if($this->session->userdata('level')==2){
-        $level = "Kasir";
-      } else {
-        $level = "Menejer";
-      }
-      $data['level'] = $level;
       
       $this->template->backend("user/index", $data);
     } else {
@@ -36,15 +28,6 @@ class User extends CI_Controller {
       $pesan = "";
       $data = [];
       $data['title'] = "Form Tambah User";
-
-      if($this->session->userdata('level')==1){
-        $level = "Admin";
-        } else if($this->session->userdata('level')==2){
-          $level = "Kasir";
-        } else {
-          $level = "Menejer";
-        }
-        $data['level'] = $level;
 
       if($this->input->post("submit")){
       
@@ -87,15 +70,6 @@ class User extends CI_Controller {
       $data['id'] = $id;
       $data['title'] = "Form Ubah User";
       $data['data_user'] = $this->User_Model->get_user_by_id($id);
-
-      if($this->session->userdata('level')==1){
-        $level = "Admin";
-      } else if($this->session->userdata('level')==2){
-        $level = "Kasir";
-      } else {
-        $level = "Menejer";
-      }
-      $data['level'] = $level;
 
       if($this->input->post("submit")){      
         $this->load->library('form_validation');

@@ -15,15 +15,6 @@ class Jenis extends CI_Controller {
       $data = [];
       $data['title'] = "Jenis";
       $data['data_jenis'] = $this->Jenis_Model->get_jenis();
-
-      if($this->session->userdata('level')==1){
-        $level = "Admin";
-      } else if($this->session->userdata('level')==2){
-        $level = "Kasir";
-      } else {
-        $level = "Menejer";
-      }
-      $data['level'] = $level;
       
       $this->template->backend("jenis/index", $data);
     } else {
@@ -37,15 +28,6 @@ class Jenis extends CI_Controller {
       $pesan = "";
       $data = [];
       $data['title'] = "Form Tambah Jenis";
-
-      if($this->session->userdata('level')==1){
-        $level = "Admin";
-      } else if($this->session->userdata('level')==2){
-        $level = "Kasir";
-      } else {
-        $level = "Menejer";
-      }
-      $data['level'] = $level;
 
       if($this->input->post("submit")){
       
@@ -77,15 +59,6 @@ class Jenis extends CI_Controller {
       $data['id'] = $id;
       $data['title'] = "Form Ubah Jenis";
       $data['data_jenis'] = $this->Jenis_Model->get_jenis_by_id($id);
-
-      if($this->session->userdata('level')==1){
-        $level = "Admin";
-      } else if($this->session->userdata('level')==2){
-        $level = "Kasir";
-      } else {
-        $level = "Menejer";
-      }
-      $data['level'] = $level;
 
       if($this->input->post("submit")){      
         $this->load->library('form_validation');

@@ -12,23 +12,35 @@ class Makanan_Model extends CI_Model {
     return $query->result();
   }
 
+  function get_makanan_by_status($id){
+    $sql = "select * from t_makanan where status = ?";
+    $query = $this->db->query($sql, array($id));
+    return $query->row();
+  }
+
+  function get_makanan_by_jenis($id){
+    $sql = "select * from t_makanan where id_jenis = ?";
+    $query = $this->db->query($sql, array($id));
+    return $query->result();
+  }
+
   function get_makanan_by_id($id){
     $sql = "select * from t_makanan where id = ?";
     $query = $this->db->query($sql, array($id));
     return $query->row();
   }
 
-  function manakan_insert($id_jenis, $manakan, $status){
+  function makanan_insert($id_jenis, $makanan, $status){
     $sql = "insert into t_makanan (id, id_jenis, nama, status) values (null, ?, ?, ?)";
-    $query = $this->db->query($sql, array($id_jenis, $manakan, $status));
+    $query = $this->db->query($sql, array($id_jenis, $makanan, $status));
   }
 
-  function manakan_update($id, $id_jenis, $manakan, $status){
-    $sql = "update t_makanan set id_jenis = ?, manakan = ?, status = ? where id = ?";
-    $query = $this->db->query($sql, array($id_jenis, $manakan, $status, $id));
+  function makanan_update($id, $id_jenis, $makanan, $status){
+    $sql = "update t_makanan set id_jenis = ?, nama = ?, status = ? where id = ?";
+    $query = $this->db->query($sql, array($id_jenis, $makanan, $status, $id));
   }
 
-  function manakan_delete($id){
+  function makanan_delete($id){
     $sql = "delete from t_makanan where id = ?";
     $query = $this->db->query($sql, array($id));
   }

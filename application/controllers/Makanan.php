@@ -32,6 +32,19 @@ class Makanan extends CI_Controller {
     }
   }
 
+  public function get_by_jenis()
+  {
+    $id_jenis = $this->input->post('id_jenis');
+    $jenis = $this->Makanan_Model->get_makanan_by_jenis($id_jenis);
+    // var_dump($data);die;
+    // $data = (Object)[
+    //   "status" => 200,
+    //   "msg" => "",
+    //   "data" => $jenis
+    // ];
+    echo json_encode($jenis);
+  }
+
   public function tambah()
   {
     if( $this->session->userdata('login')){
@@ -53,12 +66,14 @@ class Makanan extends CI_Controller {
       if($this->input->post("submit")){
       
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('makanan', 'makanan', 'trim|xss_clean|strip_tags|required');
+        $this->form_validation->set_rules('jenis', 'Jenis', 'trim|xss_clean|strip_tags|required');
+        $this->form_validation->set_rules('nama', 'Nama', 'trim|xss_clean|strip_tags|required');
     
         if($this->form_validation->run()){
-          $makanan = $this->security->sanitize_filename($this->input->post('makanan'));
+          $jenis = $this->security->sanitize_filename($this->input->post('jenis'));
+          $nama = $this->security->sanitize_filename($this->input->post('nama'));
           $status = $this->input->post('status');
-          $this->Makanan_Model->makanan_insert($makanan, $status);
+          $this->Makanan_Model->makanan_insert($jenis, $nama, $status);
           redirect("makanan");
         }else{
           $pesan = "Mohon isi semua dengan benar";
@@ -94,12 +109,14 @@ class Makanan extends CI_Controller {
 
       if($this->input->post("submit")){      
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('makanan', 'makanan', 'trim|xss_clean|strip_tags|required');
+        $this->form_validation->set_rules('jenis', 'Jenis', 'trim|xss_clean|strip_tags|required');
+        $this->form_validation->set_rules('nama', 'Nama', 'trim|xss_clean|strip_tags|required');
     
         if($this->form_validation->run()){
-          $makanan = $this->security->sanitize_filename($this->input->post('makanan'));
+          $jenis = $this->security->sanitize_filename($this->input->post('jenis'));
+          $nama = $this->security->sanitize_filename($this->input->post('nama'));
           $status = $this->input->post('status');
-          $this->Makanan_Model->makanan_update($id, $makanan, $status);
+          $this->Makanan_Model->makanan_update($id, $jenis, $nama, $status);
           redirect("makanan");
         }else{
           $pesan = "Mohon isi semua dengan benar";

@@ -18,17 +18,23 @@ class Diskon_Model extends CI_Model {
     return $query->row();
   }
 
-  function manakan_insert($kode, $diskon_persen, $diskon_harga){
-    $sql = "insert into t_diskon (id, kode, diskon_persen, diskon_harga) values (null, ?, ?, ?)";
-    $query = $this->db->query($sql, array($id_jenis, $manakan, $status));
+  function get_diskon_by_kode($id){
+    $sql = "select * from t_diskon where kode = ?";
+    $query = $this->db->query($sql, array($id));
+    return $query->row();
   }
 
-  function manakan_update($id, $kode, $diskon_persen, $diskon_harga){
-    $sql = "update t_diskon set kode = ?, diskon_persen = ?, diskon_harga = ? where id = ?";
-    $query = $this->db->query($sql, array($kode, $diskon_persen, $diskon_harga, $id));
+  function diskon_insert($kode, $diskon_persen, $diskon_harga, $status){
+    $sql = "insert into t_diskon (id, kode, diskon_persen, diskon_harga, status) values (null, ?, ?, ?, ?)";
+    $query = $this->db->query($sql, array($kode, $diskon_persen, $diskon_harga, $status));
   }
 
-  function manakan_delete($id){
+  function diskon_update($id, $kode, $diskon_persen, $diskon_harga, $status){
+    $sql = "update t_diskon set kode = ?, diskon_persen = ?, diskon_harga = ?, status = ? where id = ?";
+    $query = $this->db->query($sql, array($kode, $diskon_persen, $diskon_harga, $status, $id));
+  }
+
+  function diskon_delete($id){
     $sql = "delete from t_diskon where id = ?";
     $query = $this->db->query($sql, array($id));
   }

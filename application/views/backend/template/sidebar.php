@@ -7,6 +7,15 @@
                 </div>
                 <div class="text-wrapper">
                   <p class="profile-name"><?= $this->session->userdata('nama') ?></p>
+                  <?php
+                    if($this->session->userdata('level')==1){
+                      $level = "Admin";
+                    } else if($this->session->userdata('level')==2){
+                      $level = "Kasir";
+                    } else {
+                      $level = "Menejer";
+                    }
+                  ?>
                   <p class="designation"><?= $level ?></p>
                   <!-- <p class="designation"><?= $this->session->userdata('level')==1? "Admin" : $this->session->userdata('level')==2? "Kasir" : "Menejer" ?></p> -->
                 </div>

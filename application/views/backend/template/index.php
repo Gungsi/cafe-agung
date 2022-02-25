@@ -75,6 +75,9 @@
     <!-- <script src="<?= base_url("assets/js/shared/misc.js") ?>"></script> -->
     <!-- endinject -->
     <!-- Custom js for this page-->
+    <script>
+      var base_url = "<?= base_url() ?>";
+    </script>
     <script src="<?= base_url("assets/js/custom.js") ?>"></script>
   </body>
 </html>

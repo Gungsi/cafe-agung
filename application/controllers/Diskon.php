@@ -15,15 +15,6 @@ class Diskon extends CI_Controller {
       $data = [];
       $data['title'] = "Diskon";
       $data['data_diskon'] = $this->Diskon_Model->get_diskon();
-
-      if($this->session->userdata('level')==1){
-        $level = "Admin";
-      } else if($this->session->userdata('level')==2){
-        $level = "Kasir";
-      } else {
-        $level = "Menejer";
-      }
-      $data['level'] = $level;
       
       $this->template->backend("diskon/index", $data);
     } else {
@@ -38,26 +29,21 @@ class Diskon extends CI_Controller {
       $data = [];
       $data['title'] = "Form Tambah Diskon";
 
-      if($this->session->userdata('level')==1){
-        $level = "Admin";
-      } else if($this->session->userdata('level')==2){
-        $level = "Kasir";
-      } else {
-        $level = "Menejer";
-      }
-      $data['level'] = $level;
-
-      $data['data_jenis'] = $this->Jenis_Model->get_jenis_by_status(1);
-
       if($this->input->post("submit")){
       
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('diskon', 'diskon', 'trim|xss_clean|strip_tags|required');
+        $this->form_validation->set_rules('kode', 'Kode', 'trim|xss_clean|strip_tags|required');
+        $this->form_validation->set_rules('diskon_persen', 'Diskon %', 'trim|xss_clean|strip_tags|required');
+        $this->form_validation->set_rules('diskon_harga', 'Diskon Harga', 'trim|xss_clean|strip_tags|required');
     
         if($this->form_validation->run()){
-          $diskon = $this->security->sanitize_filename($this->input->post('diskon'));
+          $kode = $this->security->sanitize_filename($this->input->post('kode'));
+          $diskon_persen = $this->security->sanitize_filename($this->input->post('diskon_persen'));
+          $diskon_harga = $this->security->sanitize_filename($this->input->post('diskon_harga'));
+          $diskon_harga = str_replace(".","",$diskon_harga);
+
           $status = $this->input->post('status');
-          $this->Diskon_Model->diskon_insert($diskon, $status);
+          $this->Diskon_Model->diskon_insert($kode, $diskon_persen, $diskon_harga, $status);
           redirect("diskon");
         }else{
           $pesan = "Mohon isi semua dengan benar";
@@ -80,25 +66,20 @@ class Diskon extends CI_Controller {
       $data['title'] = "Form Ubah Diskon";
       $data['data_diskon'] = $this->Diskon_Model->get_diskon_by_id($id);
 
-      if($this->session->userdata('level')==1){
-        $level = "Admin";
-      } else if($this->session->userdata('level')==2){
-        $level = "Kasir";
-      } else {
-        $level = "Menejer";
-      }
-      $data['level'] = $level;
-
-      $data['data_jenis'] = $this->Jenis_Model->get_jenis_by_status(1);
-
       if($this->input->post("submit")){      
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('diskon', 'diskon', 'trim|xss_clean|strip_tags|required');
+        $this->form_validation->set_rules('kode', 'Kode', 'trim|xss_clean|strip_tags|required');
+        $this->form_validation->set_rules('diskon_persen', 'Diskon %', 'trim|xss_clean|strip_tags|required');
+        $this->form_validation->set_rules('diskon_harga', 'Diskon Harga', 'trim|xss_clean|strip_tags|required');
     
         if($this->form_validation->run()){
-          $diskon = $this->security->sanitize_filename($this->input->post('diskon'));
+          $kode = $this->security->sanitize_filename($this->input->post('kode'));
+          $diskon_persen = $this->security->sanitize_filename($this->input->post('diskon_persen'));
+          $diskon_harga = $this->security->sanitize_filename($this->input->post('diskon_harga'));
+          $diskon_harga = str_replace(".","",$diskon_harga);
+          
           $status = $this->input->post('status');
-          $this->Diskon_Model->diskon_update($id, $diskon, $status);
+          $this->Diskon_Model->diskon_update($id, $kode, $diskon_persen, $diskon_harga, $status);
           redirect("diskon");
         }else{
           $pesan = "Mohon isi semua dengan benar";
