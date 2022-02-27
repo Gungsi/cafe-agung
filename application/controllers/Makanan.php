@@ -8,7 +8,9 @@ class Makanan extends CI_Controller {
     
     $this->load->model('Makanan_Model');
     $this->load->model('Jenis_Model');
+    $this->load->model('Aktivitas_Model');
     $this->general->session_check();
+    date_default_timezone_set('Asia/Jakarta');
   }
 
   public function index(){
@@ -36,12 +38,6 @@ class Makanan extends CI_Controller {
   {
     $id_jenis = $this->input->post('id_jenis');
     $jenis = $this->Makanan_Model->get_makanan_by_jenis($id_jenis);
-    // var_dump($data);die;
-    // $data = (Object)[
-    //   "status" => 200,
-    //   "msg" => "",
-    //   "data" => $jenis
-    // ];
     echo json_encode($jenis);
   }
 
@@ -74,6 +70,9 @@ class Makanan extends CI_Controller {
           $nama = $this->security->sanitize_filename($this->input->post('nama'));
           $status = $this->input->post('status');
           $this->Makanan_Model->makanan_insert($jenis, $nama, $status);
+          
+          $keterangan = "insert data makanan $nama";
+          $this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);
           redirect("makanan");
         }else{
           $pesan = "Mohon isi semua dengan benar";
@@ -117,6 +116,9 @@ class Makanan extends CI_Controller {
           $nama = $this->security->sanitize_filename($this->input->post('nama'));
           $status = $this->input->post('status');
           $this->Makanan_Model->makanan_update($id, $jenis, $nama, $status);
+
+          $keterangan = "edit data makanan $nama";
+          $this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);
           redirect("makanan");
         }else{
           $pesan = "Mohon isi semua dengan benar";
@@ -134,6 +136,9 @@ class Makanan extends CI_Controller {
   {
     if( $this->session->userdata('login')){
         $this->Makanan_Model->makanan_delete($id);
+
+        $keterangan = "delete data makanan id $id";
+        $this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);
         redirect("makanan");
     } else {
       redirect("login");

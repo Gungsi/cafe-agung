@@ -7,7 +7,9 @@ class Diskon extends CI_Controller {
     parent::__construct();
     
     $this->load->model('Diskon_Model');
+    $this->load->model('Aktivitas_Model');
     $this->general->session_check();
+    date_default_timezone_set('Asia/Jakarta');
   }
 
   public function index(){
@@ -20,6 +22,13 @@ class Diskon extends CI_Controller {
     } else {
       redirect("login");
     }
+  }
+
+  public function get_by_kode()
+  {
+    $kode_diskon = $this->input->post('kode_diskon');
+    $diskon = $this->Diskon_Model->get_diskon_by_kode($kode_diskon);
+    echo json_encode($diskon);
   }
 
   public function tambah()
@@ -44,6 +53,9 @@ class Diskon extends CI_Controller {
 
           $status = $this->input->post('status');
           $this->Diskon_Model->diskon_insert($kode, $diskon_persen, $diskon_harga, $status);
+
+          $keterangan = "input data diskon dengan kode $kode";
+          $this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);
           redirect("diskon");
         }else{
           $pesan = "Mohon isi semua dengan benar";
@@ -80,6 +92,9 @@ class Diskon extends CI_Controller {
           
           $status = $this->input->post('status');
           $this->Diskon_Model->diskon_update($id, $kode, $diskon_persen, $diskon_harga, $status);
+
+          $keterangan = "edit data diskon ke kode $kode";
+          $this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);
           redirect("diskon");
         }else{
           $pesan = "Mohon isi semua dengan benar";
@@ -97,6 +112,9 @@ class Diskon extends CI_Controller {
   {
     if( $this->session->userdata('login')){
         $this->Diskon_Model->diskon_delete($id);
+
+        $keterangan = "delete data diskon dengan id $id";
+        $this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);
         redirect("diskon");
     } else {
       redirect("login");

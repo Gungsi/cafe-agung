@@ -7,6 +7,8 @@ class Login extends CI_Controller {
         parent::__construct();
 
 		$this->load->model('Login_Model');
+		$this->load->model('Aktivitas_Model');
+		date_default_timezone_set('Asia/Jakarta');
     }
 
 	public function index()
@@ -38,6 +40,10 @@ class Login extends CI_Controller {
 						);
 						//echo "<pre>";print_r($sess);die;
 						$this->session->set_userdata($sessdata);
+
+						$keterangan = "login user dengan nama $get->nama";
+          				$this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);
+						
 						redirect("dashboard");
 					}else{
 						$pesan1 = "Username atau Password Anda Salah";
@@ -69,6 +75,9 @@ class Login extends CI_Controller {
 	}
 
 	public function logout(){
+		$keterangan = "logout user dengan nama ".$this->session->userdata('nama');
+		$this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);
+
 		$this->session->sess_destroy();
 		redirect("login");
 	}

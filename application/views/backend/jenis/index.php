@@ -2,14 +2,6 @@
     <div class="card-header d-flex justify-content-between align-items-center">
         <!--begin::Card title-->
         <div class="card-title mb-0">
-            <div class="d-flex align-items-center">
-                <!--begin::Input group-->
-                <div class="position-relative w-md-400px">
-                    <i class="mdi mdi-search"></i>
-                    <input type="text" class="form-control  ps-10 w-100" id="cari" name="search" placeholder="Search" onkeypress="filter()"/>
-                </div>
-                <!--end::Input group-->
-            </div>
         </div>
         <div class="card-toolbar mb-0">
             <a href="<?= base_url("jenis/tambah") ?>" class="btn btn-primary rounded btn-fw">
@@ -20,7 +12,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-hover table-striped">
+            <table class="table" id="kt_table">
                 <thead>
                     <tr>
                         <th>No</th>

@@ -9,7 +9,9 @@ class Menu extends CI_Controller {
     $this->load->model('Menu_Model');
     $this->load->model('Makanan_Model');
     $this->load->model('Jenis_Model');
+    $this->load->model('Aktivitas_Model');
     $this->general->session_check();
+    date_default_timezone_set('Asia/Jakarta');
   }
 
   public function index(){
@@ -49,6 +51,9 @@ class Menu extends CI_Controller {
           $stok = $this->input->post('stok');
           
           $this->Menu_Model->menu_insert($jenis, $makanan, $harga, $stok);
+          
+          $keterangan = "input data menu dengan id menu $makanan";
+          $this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);
           redirect("Menu");
         }else{
           $pesan = "Mohon isi semua dengan benar";
@@ -89,6 +94,9 @@ class Menu extends CI_Controller {
 
             $stok = $this->input->post('stok');
             $this->Menu_Model->menu_update($id, $jenis, $makanan, $harga, $stok);
+            
+            $keterangan = "edit data menu menjadi id menu $makanan";
+            $this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);
             redirect("Menu");
         }else{
           $pesan = "Mohon isi semua dengan benar";
@@ -106,6 +114,9 @@ class Menu extends CI_Controller {
   {
     if( $this->session->userdata('login')){
         $this->Menu_Model->menu_delete($id);
+        
+        $keterangan = "delete data menu menjadi id menu $id";
+        $this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);
         redirect("Menu");
     } else {
       redirect("login");

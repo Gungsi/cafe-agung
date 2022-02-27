@@ -1,22 +1,26 @@
 <div class="card card-docs">
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <!--begin::Card title-->
-        <div class="card-title mb-0">
-            <!-- <div class="d-flex align-items-center"> -->
-                <!--begin::Input group-->
-                <!-- <div class="position-relative w-md-400px">
-                    <i class="mdi mdi-search"></i>
-                    <input type="text" class="form-control  ps-10 w-100" id="cari" name="search" placeholder="Search" onkeypress="filter()"/>
-                </div> -->
-                <!--end::Input group-->
-            <!-- </div> -->
-        </div>
-        <div class="card-toolbar mb-0">
-            <a href="<?= base_url("transaksi/tambah") ?>" class="btn btn-primary rounded btn-fw">
-                <i class="mdi mdi-plus"></i>
-                Tambah
-            </a>
-        </div>
+    <div class="header p-3">
+        <form action="<?= base_url("laporan/search_transaksi") ?>" method="post">
+            <div class="card-title row">
+                <div class="col-3">
+                    <select name="karyawan" class="form-control">
+                        <option value="">Pilih Karyawan</option>
+                        <?php foreach ($data_karyawan as $data) { ?>
+                            <option value="<?= $data->id ?>" <?= $karyawan == $data->id? 'selected="selected"' : ""?>><?= $data->nama ?></option>
+                        <?php }?>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <input type="text" name="dates" id="dates" class="form-control" placeholder="Tanggal" value="<?= $date ?>"/>
+                </div>
+                <div class="col-3">
+                    <button  class="btn btn-primary rounded btn-fw">
+                        <i class="mdi mdi-search"></i>
+                        Cari
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -50,7 +54,7 @@
                         //     $diskon_harga = $data->diskon_harga;
                         // }
                         // $diskon = $diskon_persen + $diskon_harga;
-                        $date=date_create($data->create_date)
+                        $date=date_create($data->tanggal)
                     ?>
                         <tr>
                             <td><?= $no ?></td>

@@ -1,3 +1,6 @@
+<?php
+date_default_timezone_set('Asia/Jakarta');
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,12 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Cafe Agung</title>
     <!-- plugins:css -->
+    <link rel="stylesheet" href="<?= base_url("assets/css/shared/style.css") ?>">
     <link rel="stylesheet" href="<?= base_url("assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css") ?>">
     <link rel="stylesheet" href="<?= base_url("assets/vendors/iconfonts/ionicons/dist/css/ionicons.css") ?>">
     <link rel="stylesheet" href="<?= base_url("assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css") ?>">
     <link rel="stylesheet" href="<?= base_url("assets/vendors/css/vendor.bundle.base.css") ?>">
     <link rel="stylesheet" href="<?= base_url("assets/vendors/css/vendor.bundle.addons.css") ?>">
     <link rel="stylesheet" href="<?= base_url("assets/vendors/DataTables/datatables.min.css")?>"/>
+    <link rel="stylesheet" href="<?= base_url("assets/css/daterangepicker.css")?>"/>
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -28,9 +33,9 @@
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-          <a class="navbar-brand brand-logo" href="index.html">
+          <a class="navbar-brand brand-logo" href="<?= base_url() ?>">
             <img src="<?= base_url("assets/images/logo.svg") ?>" alt="logo" /> </a>
-          <a class="navbar-brand brand-logo-mini" href="index.html">
+          <a class="navbar-brand brand-logo-mini" href="<?= base_url() ?>">
             <img src="<?= base_url("assets/images/logo-mini.svg") ?>" alt="logo" /> </a>
         </div>
         <?= $header ?>
@@ -67,17 +72,20 @@
     <script src="<?= base_url("assets/vendors/js/vendor.bundle.base.js") ?>"></script>
     <script src="<?= base_url("assets/vendors/js/vendor.bundle.addons.js") ?>"></script>
     <script src="<?= base_url("assets/vendors/DataTables/datatables.min.js") ?>"></script>
+    <script src="<?= base_url("assets/js/moment.min.js") ?>"></script>
+    <script src="<?= base_url("assets/js/daterangepicker.min.js") ?>"></script>
     <!-- endinject -->
     <!-- Plugin js for this page-->
     <!-- End plugin js for this page-->
     <!-- inject:js -->
     <script src="<?= base_url("assets/js/shared/off-canvas.js") ?>"></script>
-    <!-- <script src="<?= base_url("assets/js/shared/misc.js") ?>"></script> -->
+    <script src="<?= base_url("assets/js/shared/misc.js") ?>"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
     <script>
       var base_url = "<?= base_url() ?>";
     </script>
+    <script src="<?= base_url("assets/js/demo_1/dashboard.js") ?>"></script>
     <script src="<?= base_url("assets/js/custom.js") ?>"></script>
   </body>
 </html>

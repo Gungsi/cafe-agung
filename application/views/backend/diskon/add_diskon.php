@@ -27,7 +27,7 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-success mr-2" name="submit" value="true">Submit</button>
-            <button class="btn btn-light">Cancel</button>
+            <a href="<?= base_url("menu") ?>" class="btn btn-light">Cancel</a>
             <?php if($pesan!=""){ ?>
             <div class="alert alert-danger nobottommargin mt-2">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>

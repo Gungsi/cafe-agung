@@ -7,7 +7,9 @@ class Jenis extends CI_Controller {
     parent::__construct();
     
     $this->load->model('Jenis_Model');
+    $this->load->model('Aktivitas_Model');
     $this->general->session_check();
+    date_default_timezone_set('Asia/Jakarta');
   }
 
   public function index(){
@@ -38,6 +40,9 @@ class Jenis extends CI_Controller {
           $jenis = $this->security->sanitize_filename($this->input->post('jenis'));
           $status = $this->input->post('status');
           $this->Jenis_Model->jenis_insert($jenis, $status);
+
+          $keterangan = "input data jenis $jenis";
+          $this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);
           redirect("jenis");
         }else{
           $pesan = "Mohon isi semua dengan benar";
@@ -68,6 +73,9 @@ class Jenis extends CI_Controller {
           $jenis = $this->security->sanitize_filename($this->input->post('jenis'));
           $status = $this->input->post('status');
           $this->Jenis_Model->jenis_update($id, $jenis, $status);
+
+          $keterangan = "edit data jenis $jenis";
+          $this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);
           redirect("jenis");
         }else{
           $pesan = "Mohon isi semua dengan benar";
@@ -85,6 +93,9 @@ class Jenis extends CI_Controller {
   {
     if( $this->session->userdata('login')){
         $this->Jenis_Model->jenis_delete($id);
+        
+        $keterangan = "delete data id jenis $id";
+        $this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);
         redirect("jenis");
     } else {
       redirect("login");

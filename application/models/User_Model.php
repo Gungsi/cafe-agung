@@ -4,6 +4,7 @@ class User_Model extends CI_Model {
   
   function __construct(){
     parent::__construct();
+    date_default_timezone_set('Asia/Jakarta');
   }
 
   function get_user(){
@@ -16,6 +17,12 @@ class User_Model extends CI_Model {
     $sql = "select * from t_user where id = ?";
     $query = $this->db->query($sql, array($id));
     return $query->row();
+  }
+
+  function get_user_by_level($level){
+    $sql = "select * from t_user where level = ?";
+    $query = $this->db->query($sql, array($level));
+    return $query->result();
   }
 
   function user_insert($name, $email, $username, $password, $jenis_kelamin, $level, $status){

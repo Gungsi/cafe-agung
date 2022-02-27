@@ -19,7 +19,7 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-success mr-2" name="submit" value="true">Submit</button>
-            <button class="btn btn-light">Cancel</button>
+            <a href="<?= base_url("menu") ?>" class="btn btn-light">Cancel</a>
         </div>
     </form>
 </div>

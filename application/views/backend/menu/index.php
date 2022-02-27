@@ -20,7 +20,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-hover table-striped" id="kt_table">
+            <table class="table" id="kt_table">
                 <thead>
                     <tr>
                         <th>No</th>
