@@ -76,9 +76,14 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
+	// 'username' => 'id18071663_cafe',
+	// 'password' => 'ER/ZaxwapzlQ9kaV',
+	// 'database' => 'id18071663_cafe_agung',
+	
 	'username' => 'root',
 	'password' => '',
 	'database' => 'cafe_agung',
+	
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

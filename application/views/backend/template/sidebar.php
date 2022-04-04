@@ -2,7 +2,7 @@
             <li class="nav-item nav-profile">
               <a href="#" class="nav-link">
                 <div class="profile-image">
-                  <img class="img-xs rounded-circle" src="<?= base_url("assets/images/faces/face8.jpg") ?>" alt="profile image">
+                  <img class="img-xs rounded-circle" src="<?= base_url("assets/images/faces/face.png") ?>" alt="profile image">
                   <div class="dot-indicator bg-success"></div>
                 </div>
                 <div class="text-wrapper">
@@ -22,6 +22,7 @@
               </a>
             </li>
             <li class="nav-item nav-category">Main Menu</li>
+            <?php if($this->session->userdata('level')!=2){ ?>
             <li class="nav-item">
               <a class="nav-link" href="<?= base_url("dashboard") ?>">
                 <i class="menu-icon typcn typcn-document-text"></i>
@@ -57,12 +58,14 @@
                 <span class="menu-title">Daftar Menu</span>
               </a>
             </li>
+            <?php } ?>
             <li class="nav-item">
               <a class="nav-link" href="<?= base_url("transaksi") ?>">
                 <i class="menu-icon typcn typcn-th-large-outline"></i>
                 <span class="menu-title">Transaksi</span>
               </a>
             </li>
+            <?php if($this->session->userdata('level')!=2){ ?>
             <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#laporan" aria-expanded="false" aria-controls="ui-basic">
                 <i class="menu-icon typcn typcn-coffee"></i>
@@ -80,6 +83,7 @@
                 </ul>
               </div>
             </li>
+            <?php } ?>
             <li class="nav-item">
               <a class="nav-link" href="<?= base_url("login/logout") ?>">
                 <i class="menu-icon typcn typcn-bell"></i>

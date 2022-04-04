@@ -68,8 +68,9 @@ class Makanan extends CI_Controller {
         if($this->form_validation->run()){
           $jenis = $this->security->sanitize_filename($this->input->post('jenis'));
           $nama = $this->security->sanitize_filename($this->input->post('nama'));
+          $harga = $this->security->sanitize_filename($this->input->post('harga'));
           $status = $this->input->post('status');
-          $this->Makanan_Model->makanan_insert($jenis, $nama, $status);
+          $this->Makanan_Model->makanan_insert($jenis, $nama, $harga, $status);
           
           $keterangan = "insert data makanan $nama";
           $this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);
@@ -114,8 +115,9 @@ class Makanan extends CI_Controller {
         if($this->form_validation->run()){
           $jenis = $this->security->sanitize_filename($this->input->post('jenis'));
           $nama = $this->security->sanitize_filename($this->input->post('nama'));
+          $harga = $this->security->sanitize_filename($this->input->post('harga'));
           $status = $this->input->post('status');
-          $this->Makanan_Model->makanan_update($id, $jenis, $nama, $status);
+          $this->Makanan_Model->makanan_update($id, $jenis, $nama, $harga, $status);
 
           $keterangan = "edit data makanan $nama";
           $this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);

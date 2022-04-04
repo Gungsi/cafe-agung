@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Cafe Agung</title>
+    <title>Cafe Keluarga</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="<?= base_url("assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css") ?>">
     <link rel="stylesheet" href="<?= base_url("assets/vendors/iconfonts/ionicons/dist/css/ionicons.css") ?>">
@@ -16,6 +16,7 @@
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="<?= base_url("assets/css/shared/style.css") ?>">
+    <link rel="stylesheet" href="<?= base_url("assets/css/style.css") ?>">
     <!-- endinject -->
     <link rel="shortcut icon" href="<?= base_url("assets/images/favicon.ico") ?>" />
   </head>
@@ -59,13 +60,13 @@
                     <i class="icon-remove-sign"></i> <?= $pesan1; ?>
                   </div>
                   <?php } ?>
-                  <div class="form-group d-flex justify-content-between">
+                  <!-- <div class="form-group d-flex justify-content-between">
                     <div class="form-check form-check-flat mt-0">
                       <label class="form-check-label">
                         <input type="checkbox" class="form-check-input" checked> Keep me signed in </label>
                     </div>
                     <a href="#" class="text-small forgot-password text-black">Forgot Password</a>
-                  </div>
+                  </div> -->
                 </form>
               </div>
               <p class="footer-text text-center">copyright © 2022 Muhammad Agung Pamungkas. All rights reserved.</p>

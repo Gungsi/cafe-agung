@@ -1,4 +1,12 @@
 $(document).ready(function () {
+    $('input[name="dates"]').daterangepicker({
+        autoUpdateInput: true,
+        locale: {
+            cancelLabel: 'Clear',
+            format: 'YYYY-MM-DD'
+        }
+    });
+    
     $('#kt_table').DataTable({
         processing: true,
         serverSide: false,
@@ -11,14 +19,6 @@ $(document).ready(function () {
         filter: true,
         fnDrawCallback: function() {
         },
-    });
-
-    $('input[name="dates"]').daterangepicker({
-        autoUpdateInput: true,
-        locale: {
-            cancelLabel: 'Clear',
-            format: 'YYYY-MM-DD'
-        }
     });
 
     $('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
@@ -112,13 +112,13 @@ function selectMenu(id, nama, harga) {
         +convertNominal(harga.toString())
         +'</td>'
         +'<td>'
-        +'<input type="number" name="jumlah[]" class="form-control" value="1" onchange="sumPesanan(this, '+harga+', '+(table.length+1)+')"/>'
+        +'<input type="number" name="jumlah_pesanan[]" class="form-control" value="1" onchange="sumPesanan(this, '+harga+', '+(table.length+1)+')"/>'
         +'</td>'
         +'<td>'
-        +'<input type="text" name="catatan[]" class="form-control" placeholder="Catatan" value=""/>'
+        +'<input type="text" name="catatan_pesanan[]" class="form-control" placeholder="Catatan" value=""/>'
         +'</td>'
         +'<td>'
-        +'<input type="text" name="total[]" id="total_jumlah_'+(table.length+1)+'" class="form-control" value="'+convertNominal(harga.toString())+'"/>'
+        +'<input type="text" name="total_pesanan[]" id="total_jumlah_'+(table.length+1)+'" class="form-control" value="'+convertNominal(harga.toString())+'"/>'
         +'</td>'
         +'<td>'
         +`<a class="btn btn-danger btn-fw" href="#" onclick="deletePesanan('#tr_`+(table.length+1)+`')"><i class="mdi mdi-delete"></i></a>`
@@ -265,4 +265,74 @@ function checkDiskon() {
     }).fail(function () {
         alert('Error call get diskon');
     });
+}
+
+function submitTransaksi() {
+    var frm = $('#add_transaksi');
+    var formData = $('#add_transaksi').serializeArray();
+
+    $.ajax({
+        url: frm.attr('action'),
+        type: frm.attr('method'),
+        data: formData,
+        dataType: 'json',
+        beforeSend: function() {
+            $('#formCreateTransaksi').addClass('overlay overlay-block');
+            $("#overlayformCreateTransaksi").show();
+        },
+        success: function (data) {
+            $('#formCreateTransaksi').removeClass('overlay overlay-block');
+            $("#overlayformCreateTransaksi").hide();
+
+            console.log('sukses');
+            Swal.fire({
+                html: data.code == "1"? "Succesfully added new data!" : data.msg,
+                icon: data.code == "1"? "success" : "error",
+                buttonsStyling: false,
+                confirmButtonText: "OK",
+                customClass: {
+                    confirmButton: "btn btn-primary"
+                }
+            }).then(function (isConfirm) {
+                
+                if(data.code==="1"){
+                    window.location.href = base_url + "transaksi/detail/"+data.id;
+                } else {
+                    // IF User Choose Cancel
+                    if (!isConfirm.isConfirmed) return;
+                }
+                // frm.trigger("reset");
+                // filterActivity();
+                // location.reload();
+            });
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            $('#formCreateTransaksi').removeClass('overlay overlay-block');
+            $("#overlayformCreateActivity").hide();
+
+            Swal.fire({
+                html: "Error, Please try again.<br> <strong>",
+                icon: "error",
+                buttonsStyling: false,
+                confirmButtonText: "OK",
+                customClass: {
+                    confirmButton: "btn btn-primary"
+                }
+            });
+        }
+    });
+}
+
+function printDiv(id) {
+    var divContents = document.getElementById(id).innerHTML;
+    var a = window.open('', '', 'height=500, width=500');
+    a.document.write('<html>');
+    a.document.write('<heade>');
+    a.document.write('<link rel="stylesheet" href="'+base_url+'assets/css/shared/style.css">')
+    a.document.write('</heade>');
+    a.document.write('<body>');
+    a.document.write(divContents);
+    a.document.write('</body></html>');
+    a.document.close();
+    a.print();
 }

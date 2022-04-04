@@ -10,10 +10,10 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown d-xl-inline-block user-dropdown">
               <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                <img class="img-xs rounded-circle" src="<?= base_url("assets/images/faces/face8.jpg") ?>" alt="Profile image"> </a>
+                <img class="img-xs rounded-circle" src="<?= base_url("assets/images/faces/face.png") ?>" alt="Profile image"> </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                 <div class="dropdown-header text-center">
-                  <img class="img-md rounded-circle" src="<?= base_url("assets/images/faces/face8.jpg") ?>" alt="Profile image">
+                  <img class="img-md rounded-circle" src="<?= base_url("assets/images/faces/face.png") ?>" alt="Profile image">
                   <p class="mb-1 mt-3 font-weight-semibold"><?= $this->session->userdata('nama') ?></p>
                   <p class="font-weight-light text-muted mb-0"><?= $this->session->userdata('email') ?></p>
                 </div>

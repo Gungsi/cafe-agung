@@ -54,6 +54,8 @@ class Transaksi extends CI_Controller {
     }
   }
 
+
+
   public function tambah()
   {
     if( $this->session->userdata('login')){
@@ -63,8 +65,9 @@ class Transaksi extends CI_Controller {
 
       $data['data_jenis'] = $this->Jenis_Model->get_jenis_by_status(1);
       $data['data_menu'] = $this->Menu_Model->get_menu();
+      // die($this->input->post("submit")=="true");
 
-      if($this->input->post("submit")){
+      if($this->input->post("submit")=="true"){
       
         $this->load->library('form_validation');
         $this->form_validation->set_rules('pelanggan', 'Pelanggal', 'trim|xss_clean|strip_tags|required');
@@ -98,30 +101,39 @@ class Transaksi extends CI_Controller {
           $id_transaksi = $this->Transaksi_Model->transaksi_insert($id_kasir, $id_diskon, $diskon, $pelanggan, $no_meja, $pajak, $total, $nominal, $kembalian);
 
           $id_menu = $this->input->post('id_menu');
-          $jumlah = $this->input->post('jumlah');
-          $catatan = $this->input->post('catatan');
-          $total = $this->input->post('total');
+          $jumlah_pesanan = $this->input->post('jumlah_pesanan');
+          $catatan_pesanan = $this->input->post('catatan_pesanan');
+          $total_pesanan = $this->input->post('total_pesanan');
 
-          // print_r($id_menu);die;
+          // print_r($total_pesanan);die;
           
           for ($i=0; $i < count($id_menu) ; $i++) { 
             $menu = $id_menu[$i];
-            $jml = $jumlah[$i];
-            $note = $catatan[$i];
-            $ttl = $total[$i];
+            $jml = $jumlah_pesanan[$i];
+            $note = $catatan_pesanan[$i];
+            $ttl = $total_pesanan[$i];
             $ttl = str_replace(".","",$ttl);
 
             $this->Pesanan_Model->pesanan_insert($id_transaksi, $menu, $jml, $ttl, $note);
           }
 
-          $$keterangan = "Melakukan input pemesanan atas nama $pelanggan";
+          $keterangan = "Melakukan input pemesanan atas nama $pelanggan";
 
           $this->Aktivitas_Model->aktivitas_insert($id_kasir, $id_transaksi, $keterangan);
 
-          redirect("transaksi");
+          $pesan = "Transaksi Berhasil";
+
+          redirect("transaksi/detail/".$id_transaksi);
         }else{
           $pesan = "Mohon isi semua dengan benar";
         }
+
+        // $respose = [
+        //   "code" => "1",
+        //   "msg" => $pesan,
+        //   "id" => $id_transaksi
+        // ];
+        // die(json_encode((Object)$respose));
       }
 
       $data["pesan"] = $pesan;

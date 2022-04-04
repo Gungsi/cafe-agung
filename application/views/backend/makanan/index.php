@@ -26,6 +26,7 @@
                         <th>No</th>
                         <th>Jenis</th>
                         <th>Nama</th>
+                        <th>Harga Beli / Harga Modal</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
@@ -36,6 +37,7 @@
                             <td><?= $no ?></td>
                             <td><?= $data->jenis ?></td>
                             <td><?= $data->nama ?></td>
+                            <td>Rp.<?= number_format($data->harga_beli,0,',','.')  ?></td>
                             <td><?= $data->status == "1"? "Aktif" : "Tidak Aktif" ?></td>
                             <td>
                                 <a class="btn btn-warning btn-fw" href="<?= base_url("makanan/ubah/".$data->id) ?>"><i class="mdi mdi-pencil"></i></a>

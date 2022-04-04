@@ -12,6 +12,7 @@ class Diskon extends CI_Controller {
     date_default_timezone_set('Asia/Jakarta');
   }
 
+  
   public function index(){
     if( $this->session->userdata('login')){
       $data = [];

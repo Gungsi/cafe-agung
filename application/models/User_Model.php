@@ -19,6 +19,12 @@ class User_Model extends CI_Model {
     return $query->row();
   }
 
+  function get_user_by_email($email){
+    $sql = "select * from t_user where email = ? and status = 1";
+    $query = $this->db->query($sql, array($email));
+    return $query->row();
+  }
+
   function get_user_by_level($level){
     $sql = "select * from t_user where level = ?";
     $query = $this->db->query($sql, array($level));
@@ -33,6 +39,11 @@ class User_Model extends CI_Model {
   function user_update($id, $name, $email, $username, $jenis_kelamin, $level, $status){
     $sql = "update t_user set nama = ?, email = ?, username = ?, jenis_kelamin = ?, level = ?, status = ? where id = ?";
     $query = $this->db->query($sql, array($name, $email, $username, $jenis_kelamin, $level, $status, $id));
+  }
+
+  function forgotPassword($password){
+    $sql = "update t_user set password = ? where id ?";
+    $query = $this->db->query($sql, array($password, $id));
   }
 
   function user_delete($id){

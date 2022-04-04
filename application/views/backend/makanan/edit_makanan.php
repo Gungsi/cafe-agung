@@ -14,6 +14,10 @@
                 <label for="nama">Nama</label>
                 <input type="text" name="nama" class="form-control" placeholder="Nama" value="<?= $data_makanan->nama ?>"/>
             </div>
+            <div class="form-group">
+                <label for="nama">Harga</label>
+                <input type="text" name="harga" class="form-control" placeholder="Harga" value="<?= $data_makanan->harga_beli ?>"/>
+            </div>
             <div class="form-group d-flex align-items-center row">
                 <label class="col-sm-3 col-form-label">Status</label>
                 <div class="col-9 d-flex flex-row">

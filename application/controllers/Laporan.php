@@ -7,6 +7,7 @@ class Laporan extends CI_Controller {
     parent::__construct();
     
     $this->load->model('Transaksi_Model');
+    $this->load->model('Laporan_Model');
     $this->load->model('Pesanan_Model');
     $this->load->model('Menu_Model');
     $this->load->model('Makanan_Model');
@@ -60,7 +61,7 @@ class Laporan extends CI_Controller {
         $dates = explode(" - ", $date);
         // print_r($dates);die;
         $start = $dates[0];
-        $end = $dates[1];
+        $end = $dates[1]; 
 
         // $date_start = date_format($start, "Y-m-d");
         // $date_end = date_format($end, "Y-m-d");
@@ -92,8 +93,23 @@ class Laporan extends CI_Controller {
     if( $this->session->userdata('login')){
         $data = [];
         $data['title'] = "Laporan Keuangan";
+
+        $date = $this->input->post('dates')?? "";
+        $data["date"] = $date;
+
+        $start = "";
+        $end = "";
+        if($date != ""){
+          $dates = explode(" - ", $date);
+          $start = $dates[0];
+          $end = $dates[1];
+        }
         
+        $data['data_keuangan'] = $this->Laporan_Model->pendapatan($start, $end);
+        // print_r($data['data_keuangan']);die;
+
         $this->template->backend("laporan/keuangan", $data);
+
       } else {
         redirect("login");
       }

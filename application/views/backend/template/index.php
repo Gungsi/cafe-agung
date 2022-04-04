@@ -7,7 +7,7 @@ date_default_timezone_set('Asia/Jakarta');
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Cafe Agung</title>
+    <title>Cafe Keluarga</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="<?= base_url("assets/css/shared/style.css") ?>">
     <link rel="stylesheet" href="<?= base_url("assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css") ?>">
@@ -17,11 +17,12 @@ date_default_timezone_set('Asia/Jakarta');
     <link rel="stylesheet" href="<?= base_url("assets/vendors/css/vendor.bundle.addons.css") ?>">
     <link rel="stylesheet" href="<?= base_url("assets/vendors/DataTables/datatables.min.css")?>"/>
     <link rel="stylesheet" href="<?= base_url("assets/css/daterangepicker.css")?>"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.min.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="<?= base_url("assets/css/shared/style.css") ?>">
+    <link rel="stylesheet" href="<?= base_url("assets/css/style.css") ?>">
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="<?= base_url("assets/css/demo_1/style.css") ?>">
@@ -34,9 +35,13 @@ date_default_timezone_set('Asia/Jakarta');
       <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
           <a class="navbar-brand brand-logo" href="<?= base_url() ?>">
-            <img src="<?= base_url("assets/images/logo.svg") ?>" alt="logo" /> </a>
+            <h2 class="text-white pt-5">Cafe Keluarga</h2>
+            <!-- <img src="<?= base_url("assets/images/logo.svg") ?>" alt="logo" /> -->
+          </a>
           <a class="navbar-brand brand-logo-mini" href="<?= base_url() ?>">
-            <img src="<?= base_url("assets/images/logo-mini.svg") ?>" alt="logo" /> </a>
+            <h2 class="text-white">CK</h2>
+            <!-- <img src="<?= base_url("assets/images/logo-mini.svg") ?>" alt="logo" /> </a> -->
+          </a>
         </div>
         <?= $header ?>
       </nav>
@@ -74,6 +79,7 @@ date_default_timezone_set('Asia/Jakarta');
     <script src="<?= base_url("assets/vendors/DataTables/datatables.min.js") ?>"></script>
     <script src="<?= base_url("assets/js/moment.min.js") ?>"></script>
     <script src="<?= base_url("assets/js/daterangepicker.min.js") ?>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page-->
     <!-- End plugin js for this page-->

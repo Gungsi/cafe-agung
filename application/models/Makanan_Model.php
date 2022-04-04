@@ -8,7 +8,7 @@ class Makanan_Model extends CI_Model {
   }
 
   function get_makanan(){
-    $sql = "select a.id, b.jenis, a.nama, a.status from t_makanan a left join t_jenis b on a.id_jenis=b.id order by a.id asc";
+    $sql = "select a.id, b.jenis, a.nama, a.harga_beli, a.status from t_makanan a left join t_jenis b on a.id_jenis=b.id order by a.id asc";
     $query = $this->db->query($sql);
     return $query->result();
   }
@@ -31,14 +31,14 @@ class Makanan_Model extends CI_Model {
     return $query->row();
   }
 
-  function makanan_insert($id_jenis, $makanan, $status){
-    $sql = "insert into t_makanan (id, id_jenis, nama, status) values (null, ?, ?, ?)";
-    $query = $this->db->query($sql, array($id_jenis, $makanan, $status));
+  function makanan_insert($id_jenis, $makanan, $harga, $status){
+    $sql = "insert into t_makanan (id, id_jenis, nama, harga_beli, status) values (null, ?, ?, ?, ?)";
+    $query = $this->db->query($sql, array($id_jenis, $makanan, $harga, $status));
   }
 
   function makanan_update($id, $id_jenis, $makanan, $status){
-    $sql = "update t_makanan set id_jenis = ?, nama = ?, status = ? where id = ?";
-    $query = $this->db->query($sql, array($id_jenis, $makanan, $status, $id));
+    $sql = "update t_makanan set id_jenis = ?, nama = ?, harga_beli = ?, status = ? where id = ?";
+    $query = $this->db->query($sql, array($id_jenis, $makanan, $harga, $status, $id));
   }
 
   function makanan_delete($id){

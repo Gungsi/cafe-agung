@@ -44,7 +44,11 @@ class Login extends CI_Controller {
 						$keterangan = "login user dengan nama $get->nama";
           				$this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);
 						
-						redirect("dashboard");
+						if($get->level == 2){
+							redirect("transaksi");
+						} else {
+							redirect("dashboard");
+						}
 					}else{
 						$pesan1 = "Username atau Password Anda Salah";
 						$this->session->sess_destroy();
@@ -76,7 +80,9 @@ class Login extends CI_Controller {
 
 	public function logout(){
 		$keterangan = "logout user dengan nama ".$this->session->userdata('nama');
-		$this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);
+		if($this->session->userdata('id')!=null){
+			$this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);
+		}
 
 		$this->session->sess_destroy();
 		redirect("login");
