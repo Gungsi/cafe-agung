@@ -64,10 +64,11 @@ class Transaksi extends CI_Controller {
       $data['title'] = "Form Tambah Transaksi";
 
       $data['data_jenis'] = $this->Jenis_Model->get_jenis_by_status(1);
-      $data['data_menu'] = $this->Menu_Model->get_menu();
+      $data['data_menu'] = $this->Menu_Model->get_menu_transaksi();
       // die($this->input->post("submit")=="true");
 
       if($this->input->post("submit")=="true"){
+
       
         $this->load->library('form_validation');
         $this->form_validation->set_rules('pelanggan', 'Pelanggal', 'trim|xss_clean|strip_tags|required');
@@ -115,7 +116,13 @@ class Transaksi extends CI_Controller {
             $ttl = str_replace(".","",$ttl);
 
             $this->Pesanan_Model->pesanan_insert($id_transaksi, $menu, $jml, $ttl, $note);
+
+            $stokMenu = $this->Menu_Model->get_menu_by_id($menu)->stok;
+            $stok = (int)$stokMenu - 1;
+            $this->Menu_Model->kurang_stok($menu, $stok);
           }
+
+          
 
           $keterangan = "Melakukan input pemesanan atas nama $pelanggan";
 

@@ -49,8 +49,9 @@ class Menu extends CI_Controller {
           $harga = $this->security->sanitize_filename($this->input->post('harga'));
           $harga = str_replace(".","",$harga);
           $stok = $this->input->post('stok');
+          $keterangan = $this->input->post('keterangan');
           
-          $this->Menu_Model->menu_insert($jenis, $makanan, $harga, $stok);
+          $this->Menu_Model->menu_insert($jenis, $makanan, $harga, $stok, $keterangan);
           
           $keterangan = "input data menu dengan id menu $makanan";
           $this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);
@@ -93,7 +94,9 @@ class Menu extends CI_Controller {
             $harga = str_replace(".","",$harga);
 
             $stok = $this->input->post('stok');
-            $this->Menu_Model->menu_update($id, $jenis, $makanan, $harga, $stok);
+            $keterangan = $this->input->post('keterangan');
+
+            $this->Menu_Model->menu_update($id, $jenis, $makanan, $harga, $stok, $keterangan);
             
             $keterangan = "edit data menu menjadi id menu $makanan";
             $this->Aktivitas_Model->aktivitas_insert($this->session->userdata('id'), null, $keterangan);

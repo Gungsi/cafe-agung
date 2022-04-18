@@ -22,7 +22,11 @@
             </div>
             <div class="form-group">
                 <label for="stok">Stok</label>
-                <input type="text" name="stok" class="form-control" placeholder="Stok" value="0"/>
+                <input type="number" name="stok" class="form-control" placeholder="Stok" value="0"/>
+            </div>
+            <div class="form-group">
+                <label for="stok">Keterangan</label>
+                <input type="text" name="keterangan" class="form-control" placeholder="Keterangan" value=""/>
             </div>
             <button type="submit" class="btn btn-success mr-2" name="submit" value="true">Submit</button>
             <a href="<?= base_url("menu") ?>" class="btn btn-light">Cancel</a>

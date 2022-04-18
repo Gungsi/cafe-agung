@@ -26,6 +26,10 @@
                 <label for="stok">Stok</label>
                 <input type="text" name="stok" class="form-control" placeholder="Stok" value="<?= $data_menu->stok ?>"/>
             </div>
+            <div class="form-group">
+                <label for="stok">Keterangan</label>
+                <input type="text" name="keterangan" class="form-control" placeholder="Keterangan" value="<?= $data_menu->keterangan ?>"/>
+            </div>
             <button type="submit" class="btn btn-success mr-2" name="submit" value="true">Submit</button>
             <a href="<?= base_url("menu") ?>" class="btn btn-light">Cancel</a>
             <?php if($pesan!=""){ ?>

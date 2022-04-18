@@ -28,6 +28,7 @@
                         <th>Nama</th>
                         <th>Harga</th>
                         <th>Stok</th>
+                        <th>Keterangan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -39,6 +40,7 @@
                             <td><?= $data->makanan ?></td>
                             <td>Rp.<?= number_format($data->harga,0,',','.')  ?></td>
                             <td><?= $data->stok ?></td>
+                            <td><?= $data->keterangan ?></td>
                             <td>
                                 <a class="btn btn-warning btn-fw" href="<?= base_url("menu/ubah/".$data->id) ?>"><i class="mdi mdi-pencil"></i></a>
                                 <a class="btn btn-danger btn-fw" href="<?= base_url("menu/hapus/".$data->id) ?>"><i class="mdi mdi-delete"></i></a>
